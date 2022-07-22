@@ -1,0 +1,40 @@
+from aiogram import types, Dispatcher
+import random
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ParseMode
+from config import bot
+
+async def bot_mem(message: types.Message):
+    lst = ["media/mem1.jpeg", "media/mem2.jpeg", "media/mem3.jpeg"]
+    photo = open(random.choice(lst), 'rb')
+    await bot.send_photo(message.chat.id, photo=photo)
+
+async def pin(message: types.Message):
+    if message.reply_to_message:
+        await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
+    else:
+        await message.reply("Надо ответить на сообщение🙄")
+
+async def quiz_handler(message: types.Message):
+    markup = InlineKeyboardMarkup()
+    button_1 = InlineKeyboardButton("NEXT", callback_data='button_1')
+    markup.add(button_1)
+
+    question = "Какое самое лучшее аниме?"
+    answers = ['Черный клевер', 'Наруто', 'Тетрадь смерти', 'Хвост феи', 'Хантер х Хантер']
+
+    await bot.send_poll(
+        chat_id=message.chat.id,
+        question=question,
+        options=answers,
+        is_anonymous=False,
+        type='quiz',
+        correct_option_id=1,
+        explanation="хокаге",
+        explanation_parse_mode=ParseMode.MARKDOWN_V2,
+        reply_markup=markup
+    )
+
+def register_handlers_client(dp: Dispatcher):
+    dp.register_message_handler(bot_mem, commands=['mem'])
+    dp.register_message_handler(quiz_handler, commands=['quiz'])
+    dp.register_message_handler(pin, commands=['pin'], commands_prefix='!/')
