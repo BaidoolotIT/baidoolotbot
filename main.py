@@ -1,7 +1,7 @@
 from aiogram.utils import executor
 from config import dp
 import logging
-from handlers import client, extra, callback, admin, fsmAdminMenu
+from handlers import client, callback, fsmAdminMenu
 from database.bot_db import sql_create
 async def on_startup(_):
     sql_create()

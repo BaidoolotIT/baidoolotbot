@@ -14,12 +14,9 @@ class FSMAdmin(StatesGroup):
 
 async def fsm_start(message: types.Message):
     if message.chat.type == 'private':
-        # if message.from_user.id in ADMIN:
             await FSMAdmin.photo.set()
             await message.answer(f"Салам {message.from_user.full_name}\n"
                                  f"Скинь фотку еды!")
-        # else:
-        #     await message.answer("Ты не мой Босс\nИШАК🙄")
     else:
         await message.reply("Пиши в ЛС!!!")
 
