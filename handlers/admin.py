@@ -1,6 +1,6 @@
 from aiogram import types, Dispatcher
 from config import ADMIN, bot
-from database.bot_db import sql_commands_get_all_id
+from database1.bot_db import sql_commands_get_all_id
 
 
 async def reklama(message: types.Message):

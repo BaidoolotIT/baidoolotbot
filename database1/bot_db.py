@@ -10,7 +10,6 @@ def sql_create():
 
     if db:
         print("База данных подключена!")
-    # db.execute("drop table if exists menu")
     db.execute("CREATE TABLE IF NOT EXISTS menu( "
                "photo TEXT,"
                "name VARCHAR(50) PRIMARY KEY,"

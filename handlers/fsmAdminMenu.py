@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from config import bot, ADMIN
-from database import bot_db
+from database1 import bot_db
 
 
 class FSMAdmin(StatesGroup):
